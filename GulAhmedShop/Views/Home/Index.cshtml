@@ -1,0 +1,158 @@
+﻿@model IEnumerable<GulAhmedShop.Models.SliderImages>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_fe.cshtml";
+}
+
+<section class="welcome_area">
+    <div class="welcome_slides owl-carousel">
+        <!-- Single Slide Start -->
+        @foreach (var item in ViewBag.p)
+        {
+            if (item.imageHeading != "Not")
+            {
+                <div class="single_slide height-400 bg-img background-overlay" style="background-image: url(@item.imagePath);">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center">
+                            <div class="col-12">
+                                <div class="welcome_slide_text">
+
+                                    <h6 data-animation="bounceInDown" data-delay="0" data-duration="500ms">* Only today we offer free shipping</h6>
+                                    <h2 data-animation="fadeInUp" data-delay="500ms" data-duration="500ms">@item.imageHeading</h2>
+                                    <a href="#" class="btn karl-btn" data-animation="fadeInUp" data-delay="1s" data-duration="500ms">Shop Now</a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+    </div>
+</section>
+
+<!-- ****** Welcome Slides Area End ****** -->
+<!-- ****** Top Catagory Area Start ****** -->
+   @* <section class="top_catagory_area d-md-flex clearfix">
+        <!-- Single Catagory -->
+        @foreach (var modelitem in Model)
+        {
+
+
+                var imgstring = Convert.ToBase64String(modelitem.image);
+                var bg_img = String.Format("data:image/gif;base64,{0}", imgstring);
+
+
+                <div class="single_catagory_area d-flex align-items-center bg-img" style="background-image: url(~/Content/fe/img/bg-img/bg-1.jpg);">
+                    <div class="catagory-content">
+                        <h6>On Accesories</h6>
+                        <h2>Sale 30%</h2>
+                        <a href="#" class="btn karl-btn">SHOP NOW</a>
+                    </div>
+                </div>
+
+        }
+    </section>
+*@
+      @*@  <!-- Single Catagory -->
+        <div class="single_catagory_area d-flex align-items-center bg-img" style="background-image: url(@/*imgstring*/);">
+            <div class="catagory-content">
+                <h6>in Bags excepting the new collection</h6>
+                <h2>Designer bags</h2>
+                <a href="#" class="btn karl-btn">SHOP NOW</a>
+            </div>
+        </div>
+            //}
+    
+          *@
+
+    
+
+@*@foreach (var item in ViewBag.p)
+{
+
+    var imgpath = Convert.ToBase64String(item.image);
+    var imgSrc12 = String.Format("data:image/gif;base64,{0}", imgpath);
+
+
+    if (item.imageHeading == "Not")
+    {
+        <section class="offer_area height-700 section_padding_100 bg-img" style="background-image: url(@imgSrc12); ">
+
+            <div class="container h-100">
+                <div class="row h-100 align-items-end justify-content-end">
+                    <div class="col-12 col-md-8 col-lg-6">
+                        <div class="offer-content-area wow fadeInUp" data-wow-delay="1s">
+                            <h2>White t-shirt <span class="karl-level">Hot</span></h2>
+                            <p>* Free shipping until 25 Dec 2017</p>
+                            <div class="offer-product-price">
+                                <h3><span class="regular-price">$25.90</span> $15.90</h3>
+                            </div>
+                            <a href="#" class="btn karl-btn mt-30">Shop Now</a>
+                            <a class="btn karl-btn mt-30" href='@Url.Action("Edit", "Images",new { id = item.id })'>Change Image</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    }
+}*@
+
+
+
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SeasonDress.seasonName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dressName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th></th>
+    </tr>*@
+
+@*@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SeasonDress.seasonName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dressName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.year)
+            </td>
+            <td>
+                @{
+                    var base64 = Convert.ToBase64String(item.Image);
+                    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                }
+                <img src="@imgSrc" style="width:50px;height:40px;"/>
+
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.dressId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.dressId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.dressId })
+            </td>
+        </tr>
+    }
+
+    </table>*@
+

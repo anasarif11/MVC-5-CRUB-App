@@ -1,0 +1,159 @@
+﻿@model IEnumerable<GulAhmedShop.Models.WomenDress>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_fe.cshtml";
+}
+<section class="welcome_area">
+    <div class="welcome_slides owl-carousel">
+        <!-- Single Slide Start -->
+        @foreach (var item in ViewBag.p)
+        {
+            if (item.imageHeading != "Not")
+            {
+
+                <div class="single_slide height-500 bg-img background-overlay" style="background-image: url(@item.imagePath);">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center">
+                            <div class="col-12">
+                                <div class="welcome_slide_text">
+
+                                    <h6 data-animation="bounceInDown" data-delay="0" data-duration="500ms">* Only today we offer free shipping</h6>
+                                    <h2 data-animation="fadeInUp" data-delay="500ms" data-duration="500ms">@item.imageHeading</h2>
+                                    <a href="#" class="btn karl-btn" data-animation="fadeInUp" data-delay="1s" data-duration="500ms">Shop Now</a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+    </div>
+</section>
+
+<section class="new_arrivals_area section_padding_100_0 clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section_heading text-center">
+                    <h2>New Arrivals</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*<div class="karl-projects-menu mb-100">
+        <div class="text-center portfolio-menu">
+            <button class="btn active" data-filter="*">ALL</button>
+            <button class="btn" data-filter=".women">WOMAN</button>
+            <button class="btn" data-filter=".man">MAN</button>
+            <button class="btn" data-filter=".access">ACCESSORIES</button>
+            <button class="btn" data-filter=".shoes">shoes</button>
+            <button class="btn" data-filter=".kids">KIDS</button>
+        </div>
+    </div>*@
+
+    <div class="container">
+        <div class="row karl-new-arrivals">
+
+            @foreach (var item in Model)
+            {
+            <!-- Single gallery Item Start -->
+                <div class="col-12 col-sm-6 col-md-4 single_gallery_item women wow fadeInUpBig" data-wow-delay="0.2s">
+                    <!-- Product Image -->
+                    <div class="product-img">
+                        <img src="@item.imagePath" alt="@item.dressName" style="width:350px;height:400px;">
+                        <div class="product-quicview">
+                            <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
+                        </div>
+                    </div>
+                    <!-- Product Description -->
+                    <div class="product-description">
+                        <h4 class="product-price">@item.price</h4>
+                        <p>@item.year</p>
+                        @if (item.numberInStock == 0)
+                        { <p>Out Of Stock</p> }
+                        else
+                        {
+                        <p>Avaliable In Stock</p>
+                        }
+                        <!-- Add to Cart -->
+                        <a href="@Url.Action("Cart","Women",new { id = item.dressId })" class="add-to-cart-btn">ADD TO CART</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SeasonDress.seasonName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dressName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th></th>
+    </tr>*@
+
+@*@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SeasonDress.seasonName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dressName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.year)
+            </td>
+            <td>
+                @{
+                    var base64 = Convert.ToBase64String(item.Image);
+                    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                }
+                <img src="@imgSrc" style="width:50px;height:40px;"/>
+
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.dressId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.dressId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.dressId })
+            </td>
+        </tr>
+    }
+
+    </table>*@
+
+@*<div>
+        @foreach (var item in Model)
+        {
+            <div class="row" >
+                @{
+                    var base64 = Convert.ToBase64String(item.Image);
+                    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                }
+                <img src="@imgSrc" style="width:30%;height:20%;" />
+
+            </div>
+
+        }
+
+    </div>*@

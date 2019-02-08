@@ -1,0 +1,260 @@
+﻿@model GulAhmedShop.ViewModel.NewDressViewModel
+
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_fe.cshtml";
+}
+
+<h2>New</h2>
+
+<div class="checkout_area section_padding_100">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-12 col-md-6">
+                <div class="checkout_details_area mt-50 clearfix">
+                    <div class="cart-page-heading">
+                    </div>
+
+
+
+
+                    @using (Html.BeginForm("New", "Women", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="row">
+                            <div class="col-12 mb-3 ">
+                                
+                                @Html.LabelFor(w => w.WomenDress.dressName)
+                                @Html.TextBoxFor(w => w.WomenDress.dressName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(w => w.WomenDress.dressName)
+
+                            </div>
+
+
+                            <div class="col-12 mb-3 ">
+                                @Html.LabelFor(w => w.WomenDress.price)
+                                @Html.TextBoxFor(w => w.WomenDress.price, "", new { @class = "form-control" }  )
+
+
+                            </div>
+
+                            <div class="col-12 mb-3 ">
+                                @Html.LabelFor(w => w.WomenDress.SeasonDressseasonId)
+                                @Html.DropDownListFor(model => model.WomenDress.SeasonDressseasonId, new SelectList(Model.SeasonDress, "seasonId", "seasonName"), "Select Season Of Dress", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(w => w.WomenDress.SeasonDressseasonId)
+
+                            </div>
+
+                            <div class="col-12 mb-3 ">
+                                @Html.LabelFor(w => w.WomenDress.year)
+                                @Html.TextBoxFor(w => w.WomenDress.year, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(w => w.WomenDress.year, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="col-12 mb-3 ">
+                                @Html.LabelFor(w => w.WomenDress.numberInStock)
+                                @Html.TextBoxFor(w => w.WomenDress.numberInStock, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(w => w.WomenDress.numberInStock, "", new { @class = "text-danger" })
+                            </div>
+
+
+
+                            <div class="col-12 mb-3 ">
+                                @Html.LabelFor(w => w.WomenDress.imagePath)
+                                <input type="file" name="imagePosted" onchange="showImage.call(this)" class="form-control" required />
+                                <img id="image" style="height:55%; width:40%; display:none; padding-top:20px;" />
+
+
+                                @if (@ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString() == "Edit")
+                                {
+                                    <img src="@Model.WomenDress.imagePath" style="height:55%; width:40%;" id="oldImage" class="form-control" />
+                                }
+
+                            </div>
+
+                            <div class="col-12 mb-3 ">
+                                @Html.LabelFor(w => w.WomenDress.otherImage1Path)
+                                <input type="file" name="Image2Posted" onchange="showImage.call(this)" class="form-control" required />
+                                <img id="image" style="height:55%; width:40%; display:none; padding-top:20px;" />
+
+
+                                @if (@ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString() == "Edit")
+                                {
+                                    <img src="@Model.WomenDress.otherImage1Path" style="height:55%; width:40%;" id="oldImage" class="form-control" />
+                                }
+
+                            </div>
+
+                            <div class="col-12 mb-3 ">
+                                @Html.LabelFor(w => w.WomenDress.otherImage2Path)
+                                <input type="file" name="Image3Posted" onchange="showImage.call(this)" class="form-control" required />
+                                <img id="image" style="height:55%; width:40%; display:none; padding-top:20px;" />
+
+
+                                @if (@ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString() == "Edit")
+                                {
+                                    <img src="@Model.WomenDress.otherImage2Path" style="height:55%; width:40%;" id="oldImage" class="form-control" />
+                                }
+
+                            </div>
+                            
+                            <div class="col-12 mb-3 ">
+                                @Html.LabelFor(w => w.WomenDress.otherImage3Path)
+                                <input type="file" name="Image4Posted" onchange="showImage.call(this)" class="form-control" required />
+                                <img id="image" style="height:55%; width:40%; display:none; padding-top:20px;" />
+
+
+                                @if (@ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString() == "Edit")
+                                {
+                                    <img src="@Model.WomenDress.otherImage3Path" style="height:55%; width:40%;" id="oldImage" class="form-control" />
+                                }
+
+                            </div>
+
+                            @Html.HiddenFor(model => model.WomenDress.dressId)
+                            @Html.AntiForgeryToken()
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Submit" id="post" class="btn btn-default" />
+                                </div>
+                            </div>
+
+
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*@using (Html.BeginForm("New", "Women", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>WomenDress</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.WomenDress.dressName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.WomenDress.dressName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.WomenDress.dressName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.WomenDress.price, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.WomenDress.price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.WomenDress.price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.WomenDress.SeasonDressseasonId, "SeasonDressseasonId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.WomenDress.SeasonDressseasonId, new SelectList(Model.SeasonDress, "seasonId", "seasonName"), "Select Season Of Dress", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.WomenDress.SeasonDressseasonId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.WomenDress.year, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.WomenDress.year, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.WomenDress.year, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.WomenDress.ImagePosted, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="ImagePosted" onchange="showImage.call(this)" class="form-control" />
+                <img id="image" style="height:55%; width:40%;" />
+
+                @if (@ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString() == "Edit")
+                {
+                    var base64 = Convert.ToBase64String(Model.WomenDress.Image);
+                    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                    <img src="@imgSrc" style="height:55%; width:40%;" id="oldImage" />
+                }
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.WomenDress.dressId)
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Submit" id="post" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}*@
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@
+
+
+<script>
+
+    function showImage() {
+        if (this.files && this.files[0]) {
+            var obj = new FileReader();
+            obj.onload = function (data) {
+                var image = document.getElementById("image");
+                image.src = data.target.result;
+                image.style.display = "block";
+            }
+            obj.readAsDataURL(this.files[0]);
+
+        }
+        var image = document.getElementById("oldImage");
+        image.style.display = "none";
+    }
+
+</script>
+

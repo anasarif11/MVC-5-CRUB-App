@@ -1,0 +1,79 @@
+﻿@model GulAhmedShop.Models.SliderImages
+@{
+    ViewBag.Title = "Check";
+    Layout = "~/Views/Shared/_fe.cshtml";
+}
+
+<h2>Check</h2>
+
+<!-- ****** Checkout Area Start ****** -->
+<div class="checkout_area section_padding_100">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-12 col-md-6">
+                <div class="checkout_details_area mt-50 clearfix">
+                    <div class="cart-page-heading">
+                    </div>
+                    <div class="cart-page-heading">
+                        <h5>Billing Address</h5>
+                        <p>Enter your cupone code</p>
+                    </div>
+
+
+
+                    @using (Html.BeginForm("New", "Images", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="row">
+                            <div class="col-12 mb-3 ">
+                                <input type="file" name="imagePosted" onchange="showImage.call(this)" class="form-control" />
+                                <img id="image" style="height:55%; width:40%; display:none; padding-top:20px;" />
+                                @if (@ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString() == "Edit")
+                                {
+                                    <img src="@Model.imagePath" style="height:55%; width:40%;" id="oldImage" class="form-control" />
+                                }
+
+                            </div>
+
+                            <div class="col-12 mb-3 ">
+                                @Html.LabelFor(w => w.imageHeading)
+                                @Html.TextBoxFor(w => w.imageHeading, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(w => w.imageHeading)
+
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    @Html.HiddenFor(m => m.id)
+                                    <input type="submit" value="Create" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    function showImage() {
+        if(this.files && this.files[0])
+        {
+            var obj = new FileReader();
+            obj.onload = function (data) {
+                var image = document.getElementById("image");
+                image.style.diplay = "block";
+                image.src = data.target.result;
+                image.style.display = "block";
+
+            }
+            obj.readAsDataURL(this.files[0]);
+
+        }
+        var image = document.getElementById("oldImage");
+        image.style.display = "none";
+    }
+
+</script>
